@@ -12,15 +12,16 @@ const pool = mysql.createPool({
 });
 
 async function createAdmin() {
-  const username = 'Stipe';
-  const email = 'stipe.mu2004@gmail.com';
-  const password = '123'; 
+  const username = 'test';
+  const email = 'test';
+  const password = 'test'; 
+  const role = 'admin'
 
   const hashedPassword = await bcrypt.hash(password, 10); 
 
   const [result] = await pool.query(
-    'INSERT INTO admins (username, email, password) VALUES (?, ?, ?)',
-    [username, email, hashedPassword]
+    'INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)',
+    [username, email, hashedPassword, role]
   );
 
   console.log('Admin created with id:', result.insertId);

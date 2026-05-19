@@ -81,7 +81,8 @@ const users = ref([])
 const roleOptions = [
   { label: 'Student', value: 'student' },
   { label: 'Invalid', value: 'invalid' },
-  { label: 'VIP', value: 'vip' }
+  { label: 'VIP', value: 'vip' },
+  { label: 'Admin', value: 'admin' }
 ]
 
 const columns = [

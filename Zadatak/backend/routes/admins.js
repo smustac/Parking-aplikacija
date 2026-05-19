@@ -12,7 +12,7 @@ router.use(isAdmin);
 
 router.get("/", async (req, res) => {
   try {
-    const [rows] = await pool.query("SELECT * FROM admins");
+    const [rows] = await pool.query("SELECT * FROM users WHERE role = ?, [admin]");
     res.json(rows);
   } catch (error) {
     res.status(500).json({ error: error.message });

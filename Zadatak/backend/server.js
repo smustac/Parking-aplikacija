@@ -105,7 +105,7 @@ app.post('/api/admin-login', async (req, res) => {
   }
 
   try {
-    const [rows] = await pool.query('SELECT * FROM admins WHERE email = ?', [email]);
+    const [rows] = await pool.query('SELECT * FROM users WHERE email = ? AND role = ?', [email,'admin']);
 
     if (rows.length === 0) {
       return res.status(401).json({ message: 'Invalid email or password' });
