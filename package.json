@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "quasar": "^2.19.3"
+  },
+ "scripts": {
+  "test": "jest --watchAll"
+},
+"jest": {
+  "transform": {},
+  "extensionsToTreatAsEsm": [".js"],
+  "testEnvironment": "node"
+},
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "supertest": "^7.2.2",
+    "vitest": "^4.1.8"
+  }
+}

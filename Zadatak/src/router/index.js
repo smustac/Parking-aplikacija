@@ -7,7 +7,7 @@ import {
 } from 'vue-router'
 import routes from './routes'
 
-export default defineRouter(function (/* { store, ssrContext } */) {
+export default defineRouter(function () {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : process.env.VUE_ROUTER_MODE === 'history'
@@ -20,20 +20,20 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   })
 
-  // ✅ Global admin route guard
+  
   Router.beforeEach((to, from, next) => {
     const requiresAdmin = to.matched.some(r => r.meta.requiresAdmin)
-    if (!requiresAdmin) return next()  // not an admin route
+    if (!requiresAdmin) return next() 
 
     const token = localStorage.getItem('adminToken')
     if (!token) return next('/adminlogin')
 
     try {
       const payload = JSON.parse(atob(token.split('.')[1]))
-      if (payload.role !== 'admin') return next('/')  // logged in but not admin
-      next()  // admin OK
+      if (payload.role !== 'admin') return next('/')  
+      next()  
     } catch {
-      return next('/adminlogin')  // invalid token
+      return next('/adminlogin')  
     }
   })
 

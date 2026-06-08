@@ -33,7 +33,7 @@
       label="Login"
       color="primary"
       class="full-width q-mb-md"
-      @click="loginUser"
+      @click="loginAdmin"
     />
      </q-card-actions>
 
@@ -63,7 +63,7 @@ const message = ref('')
 
 const router = useRouter()
 
-async function loginUser() {
+async function loginAdmin() {
   if (!email.value || !password.value) {
     alert('Please fill all fields')
     return
