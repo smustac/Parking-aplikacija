@@ -62,7 +62,7 @@ export default {
         }
       }
 
-      // Token s fallbackom (ne oslanjamo se 100% na crypto.randomUUID)
+      
       let token = localStorage.getItem('guest_token')
       if (!token) {
         token =
@@ -118,7 +118,7 @@ export default {
         this.$q.notify({ type: 'negative', message: msg })
         console.error('Reset guest error:', err)
       }
-    }
+    },
   }
 }
 </script>

@@ -108,6 +108,8 @@ function goToAdmin() {
 }
 
 function loginGuest() {
+  localStorage.removeItem('guest_token')
+  localStorage.removeItem('guest_user')
   localStorage.removeItem('user') 
   router.push('/guest')
 }
