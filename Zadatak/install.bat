@@ -157,15 +157,11 @@ if %errorlevel% neq 0 (
 :ssl_skip
 echo.
 
-:: ZAVRSETAK
-echo ================================================
-echo   INSTALACIJA ZAVRSENA
-echo ================================================
+:: POKRETANJE APLIKACIJE
 echo.
-echo Pokrenite backend:   cd backend ^& node server.js
-echo Pokrenite frontend:  quasar dev
-echo.
-echo Backend:  http://localhost:3000
-echo Frontend: http://localhost:9000
-echo.
+echo Pokrecem backend server...
+start "Backend" cmd /k "cd backend && node server.js"
+
+echo Pokrecem frontend...
+start "Frontend" cmd /k "quasar dev"
 pause
