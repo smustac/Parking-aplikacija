@@ -9,10 +9,10 @@
         </q-toolbar-title>
         <q-btn flat dense label="Login" @click="$router.push('/')" /> 
         <q-btn flat dense label="Registracija" @click="$router.push('/register')" />
+        <q-btn flat dense icon="help" label="Pomoć" @click="openHelp" />
       </q-toolbar>
     </q-header>
 
-    
     <q-page-container>
       <div class="page-wrapper">
         <router-view />
@@ -21,6 +21,28 @@
 
   </q-layout>
 </template>
+
+<script setup>
+function openHelp() {
+  const path = window.location.hash
+
+  if (path === '#/' || path === '') {
+    window.open('/prva_str.pdf', '_blank')
+  } else if (path === '#/adminlogin') {
+    window.open('/admin_login.pdf', '_blank')
+  } else if (path === '#/adminpage') {
+    window.open('/admin_page.pdf', '_blank')
+  } else if (path === '#/register') {
+    window.open('/register.pdf', '_blank')
+  } else if (path === '#/parking') {
+    window.open('/parking.pdf', '_blank')
+  } else if (path === '#/guest') {
+    window.open('/prva_str.pdf', '_blank')
+  } else {
+    window.open('/parking-pomoc.pdf', '_blank') 
+  }
+}
+</script>
 
 <style scoped>
 .bg-layout {

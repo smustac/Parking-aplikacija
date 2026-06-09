@@ -7,7 +7,7 @@ import parkingRoutes from './routes/parking.js'
 import guestRoutes from './routes/guest.js'
 import { adminAuth } from './middleware2/adminAuth.js';
 import jwt from 'jsonwebtoken'
-import usersRouter from './routes/users.js'
+
 
 dotenv.config()
 const app = express()
@@ -184,7 +184,7 @@ app.put('/api/users/:id/role',adminAuth, async (req, res) => {
 
 app.use('/api/parking', parkingRoutes)
 app.use('/api/guest', guestRoutes)
-app.use('/api/users', usersRouter)
+
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running on port ${process.env.PORT}`)

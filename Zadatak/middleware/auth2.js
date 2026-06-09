@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken'
 export default function auth(req, res, next) {
   const authHeader = req.headers.authorization
 
-  // 🔐 Logged-in user (JWT)
+  
   if (authHeader && authHeader.startsWith('Bearer ')) {
     try {
       const token = authHeader.split(' ')[1]
@@ -21,6 +21,6 @@ export default function auth(req, res, next) {
     }
   }
 
-  // ❌ No token → not allowed for admin routes
+  
   return res.status(401).json({ message: 'Nema autorizacije' })
 }
