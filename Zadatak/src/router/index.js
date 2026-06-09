@@ -37,5 +37,35 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     }
   })
 
+  // Guard za parking stranicu - provjeri zauzeto mjesto
+Router.beforeEach(async (to, from, next) => {
+  if (from.path !== '/parking') return next()
+
+  const user = JSON.parse(localStorage.getItem('user') || 'null')
+  if (!user?.id) return next()
+
+  try {
+    const res = await fetch('http://localhost:3000/api/parking', {
+      headers: {
+        'x-user-id': user.id,
+        'x-user-role': user.role || 'student'
+      }
+    })
+    const spots = await res.json()
+    const hasSpot = spots.some(s => s.taken_by == user.id)
+
+    if (hasSpot) {
+      window.alert('Nemožete izaći sa zauzetim parking mjestom!')
+      return next(false)
+    }
+  } catch {
+    // ako API ne odgovori, pusti prolaz
+  }
+
+  next()
+})
+
+
   return Router
 })
+

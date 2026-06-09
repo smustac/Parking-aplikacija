@@ -109,6 +109,8 @@ function goToAdmin() {
 
 function loginGuest() {
   localStorage.removeItem('user') 
+  localStorage.removeItem('guest_user')
+  localStorage.removeItem('guest_user')
   router.push('/guest')
 }
 </script>
