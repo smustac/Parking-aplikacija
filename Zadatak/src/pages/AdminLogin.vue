@@ -97,7 +97,7 @@ async function loginUser() {
   }
 }
 
-
+// ovaj stavlja adminov token na requestove nakon mounta
 axios.interceptors.request.use(config => {
   const token = localStorage.getItem('adminToken')
   if (token) {

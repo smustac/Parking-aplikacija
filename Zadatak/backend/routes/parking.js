@@ -50,7 +50,7 @@ router.post('/:id/occupy', async (req, res) => {
     if (spot.type === 'vip'     && role !== 'vip')     return res.status(403).json({ message: 'Nemate pravo na VIP mjesto' })
     if (spot.type === 'invalid' && role !== 'invalid') return res.status(403).json({ message: 'Nemate pravo na invalid mjesto' })
 
-    // Auto-release any occupation that has exceeded the time limit
+    // limit 2 sata
     await pool.query(`
       UPDATE parking
          SET released_at = NOW()
@@ -59,7 +59,7 @@ router.post('/:id/occupy', async (req, res) => {
          AND taken_at <= DATE_SUB(NOW(), INTERVAL ? HOUR)
     `, [spotId, LIMIT_HOURS])
 
-    // Is the spot still actively taken (within time limit)?
+    // jel mjesto zauzeto
     const [busy] = await pool.query(`
       SELECT 1 FROM parking
        WHERE parking_id = ?
@@ -69,7 +69,7 @@ router.post('/:id/occupy', async (req, res) => {
     `, [spotId, LIMIT_HOURS])
     if (busy.length) return res.status(400).json({ message: 'Mjesto je već zauzeto' })
 
-    // Does this user already have an active (non-expired) spot?
+    // ima li user vec mjesto
     const [active] = await pool.query(`
       SELECT 1 FROM parking
        WHERE user_id = ?

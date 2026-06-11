@@ -16,7 +16,7 @@
       />
     </div>
 
-    <!-- Users table -->
+    <!--tablica-->
     <q-card flat bordered>
       <q-card-section>
         <q-table
@@ -28,7 +28,7 @@
           :rows-per-page-options="[5, 10, 20]"
         >
 
-          <!-- Role column -->
+          <!--dropdown meni, mora biti i u heidi i tu-->
           <template v-slot:body-cell-role="props">
             <q-td :props="props" align="center">
               <q-select
@@ -48,7 +48,7 @@
             </q-td>
           </template>
 
-          <!-- Actions column -->
+          <!--brisanje-->
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" align="center">
               <q-btn

@@ -4,7 +4,6 @@ import pool from '../db/connection.js'
 const router = express.Router()
 
 // POST /api/guest  { guest_token }
-// Find-or-create guest user tied to guest_token.
 router.post('/', async (req, res) => {
   try {
     const { guest_token } = req.body || {}
@@ -45,7 +44,6 @@ router.post('/', async (req, res) => {
 })
 
 // DELETE /api/guest { guest_token }
-// Deletes the guest user (and their parking rows) tied to guest_token.
 router.delete('/', async (req, res) => {
   try {
     const { guest_token } = req.body || {}

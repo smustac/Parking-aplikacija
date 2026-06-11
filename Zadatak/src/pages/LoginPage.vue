@@ -92,6 +92,7 @@ async function loginUser() {
     })
 
     // spremi user za auth header-e u svim requestovima
+    localStorage.setItem('token', response.data.token)
     localStorage.setItem('user', JSON.stringify(response.data.user))
 
     message.value = response.data.message

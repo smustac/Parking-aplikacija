@@ -7,6 +7,7 @@ import {
 } from 'vue-router'
 import routes from './routes'
 
+
 export default defineRouter(function (/* { store, ssrContext } */) {
   const createHistory = process.env.SERVER
     ? createMemoryHistory
@@ -20,7 +21,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   })
 
-  // ✅ Global admin route guard
+  // admin route guarrd
   Router.beforeEach((to, from, next) => {
     const requiresAdmin = to.matched.some(r => r.meta.requiresAdmin)
     if (!requiresAdmin) return next()  // not an admin route
@@ -30,7 +31,7 @@ export default defineRouter(function (/* { store, ssrContext } */) {
 
     try {
       const payload = JSON.parse(atob(token.split('.')[1]))
-      if (payload.role !== 'admin') return next('/')  // logged in but not admin
+      if (payload.role !== 'admin') return next('/')  // ulogiran al nije admin
       next()  // admin OK
     } catch {
       return next('/adminlogin')  // invalid token
@@ -61,6 +62,17 @@ Router.beforeEach(async (to, from, next) => {
   } catch {
     // ako API ne odgovori, pusti prolaz
   }
+
+  next()
+})
+
+//zastita mape
+Router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(r => r.meta.requiresAuth)
+  if (!requiresAuth) return next()
+
+  const token = localStorage.getItem('token')
+  if (!token) return next('/login')
 
   next()
 })

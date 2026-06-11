@@ -1,3 +1,5 @@
+//ovdje nam se ucitava adminpage kao komponenta
+
 <template>
   <div v-if="isAdmin">
     <AdminPage />

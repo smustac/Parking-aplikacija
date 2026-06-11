@@ -37,7 +37,7 @@
       label-color="white"
       input-class="text-white"/>
 
-      <!-- Nicely positioned checkbox -->
+      <!--invalidski box radi napokon-->
       <div class="q-mb-lg q-pt-sm">
         <q-checkbox
           v-model="isInvalid"
