@@ -52,6 +52,7 @@
           <template v-slot:body-cell-actions="props">
             <q-td :props="props" align="center">
               <q-btn
+                data-test="delete-user"
                 icon="delete"
                 color="negative"
                 flat

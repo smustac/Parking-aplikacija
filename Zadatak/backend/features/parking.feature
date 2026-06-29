@@ -12,3 +12,5 @@ Feature: Pregled parking mjesta
     Given otvorim stranicu "http://localhost:9000"
     And kliknem gumb "Continue as Guest"
     Then trebam biti preusmjeren na "/guest"
+    And kliknem gumb "Nastavi kao gost"
+    Then trebam biti preusmjeren na "/parking"

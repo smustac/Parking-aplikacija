@@ -7,7 +7,7 @@
         <q-toolbar-title class="text-weight-bold">
           VelePark
         </q-toolbar-title>
-        <q-btn flat dense label="Login" @click="$router.push('/')" /> 
+        <q-btn flat dense label="Logi" @click="$router.push('/')" /> 
         <q-btn flat dense label="Registracija" @click="$router.push('/register')" />
       </q-toolbar>
     </q-header>

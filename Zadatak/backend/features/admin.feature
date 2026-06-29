@@ -1,14 +1,29 @@
-# features/admin.feature
-Feature: Admin prijava
+# features/auth.feature
+Feature: Admin prijava i pregled korisnika
 
-  Scenario: Uspješna admin prijava
-    Given otvorim stranicu "http://localhost:9000/#/adminlogin"
+  Scenario: Uspješna prijava admina i pregled korisnika
+    Given otvorim stranicu "http://localhost:9000"
+    And kliknem gumb "Admin access"
     When unesem email "stipe.mu2004@gmail.com" i lozinku "123"
     And kliknem gumb "Login"
     Then trebam biti preusmjeren na "/adminpage"
+    Then vidim korisnike
+    Then kliknem gumb "Logout"
 
-  Scenario: Admin prijava s krivim podacima
-    Given otvorim stranicu "http://localhost:9000/#/adminlogin"
-    When unesem email "admin@parking.hr" i lozinku "krivaLozinka"
+  Scenario: Uspješna promjena uloge korisnika
+    Given otvorim stranicu "http://localhost:9000"
+    And kliknem gumb "Admin access"
+    When unesem email "stipe.mu2004@gmail.com" i lozinku "123"
     And kliknem gumb "Login"
-    Then vidim poruku "Invalid email or password"
+    Then trebam biti preusmjeren na "/adminpage"
+    Then vidim korisnike
+    Then promjena uloge
+
+  Scenario: Uspješno brisanje korisnika
+    Given otvorim stranicu "http://localhost:9000"
+    And kliknem gumb "Admin access"
+    When unesem email "stipe.mu2004@gmail.com" i lozinku "123"
+    And kliknem gumb "Login"
+    Then trebam biti preusmjeren na "/adminpage"
+    Then vidim korisnike
+    Then obriši korisnika
